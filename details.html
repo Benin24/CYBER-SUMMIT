@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cyber Summit 2026 | Event Details</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ===== CSS VARIABLES (Design Tokens) ===== */
+    :root {
+      --color-bg-primary: #0a0e27;
+      --color-bg-secondary: #151932;
+      --color-bg-tertiary: #1a1f3a;
+      --color-accent-cyan: #00ffcc;
+      --color-accent-blue: #00f0ff;
+      --color-accent-purple: #7b2fff;
+      --color-accent-purple-light: #a855f7;
+      --color-text-primary: #ffffff;
+      --color-text-secondary: #b8c1ec;
+      --color-glass-bg: rgba(255, 255, 255, 0.05);
+      --color-glass-border: rgba(255, 255, 255, 0.1);
+
+      --font-body: 'Inter', sans-serif;
+      --font-heading: 'Space Grotesk', sans-serif;
+
+      --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg-primary);
+      color: var(--color-text-primary);
+      overflow-x: hidden;
+    }
+
+
+
+    /* ===== PAGE HEADER ===== */
+    .page-header {
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 150px 20px 80px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--color-bg-primary), var(--color-bg-secondary));
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        linear-gradient(90deg, rgba(0, 255, 204, 0.03) 1px, transparent 1px),
+        linear-gradient(rgba(0, 255, 204, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: gridMove 20s linear infinite;
+      opacity: 0.5;
+    }
+
+    @keyframes gridMove {
+      0% {
+        transform: translate(0, 0);
+      }
+
+      100% {
+        transform: translate(50px, 50px);
+      }
+    }
+
+    .page-header::after {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(123, 47, 255, 0.3), transparent 70%);
+      border-radius: 50%;
+      top: -150px;
+      right: -150px;
+      animation: float 8s ease-in-out infinite;
+      filter: blur(80px);
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+
+      50% {
+        transform: translate(30px, 30px) rotate(180deg);
+      }
+    }
+
+    .page-header h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      margin-bottom: 15px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-header p {
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      color: var(--color-text-secondary);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ===== BACK BUTTON ===== */
+    .back-btn {
+      position: fixed;
+      top: 30px;
+      left: 30px;
+      z-index: 1001;
+      background: var(--color-glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--color-glass-border);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-accent-cyan);
+      text-decoration: none;
+      font-size: 1.5rem;
+      transition: all 0.3s var(--transition-smooth);
+    }
+
+    .back-btn:hover {
+      background: var(--color-glass-border);
+      transform: scale(1.1);
+      box-shadow: 0 10px 30px rgba(0, 255, 204, 0.3);
+    }
+
+    /* ===== CONTAINER ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 20px;
+    }
+
+    /* ===== EVENT CARDS ===== */
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+
+    .event-card {
+      background: var(--color-glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--color-glass-border);
+      border-radius: 20px;
+      padding: 35px;
+      transition: all 0.4s var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .event-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 0;
+      background: linear-gradient(180deg, var(--color-accent-cyan), var(--color-accent-purple-light));
+      transition: height 0.4s var(--transition-smooth);
+    }
+
+    .event-card:hover::before {
+      height: 100%;
+    }
+
+    .event-card:hover {
+      transform: translateY(-12px) rotateX(2deg);
+      border-color: var(--color-accent-cyan);
+      box-shadow: 0 25px 60px rgba(0, 255, 204, 0.2);
+    }
+
+    .event-card h5 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: var(--color-text-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .event-card h5::before {
+      content: attr(data-emoji);
+      font-size: 2rem;
+      transition: transform 0.3s var(--transition-bounce);
+    }
+
+    .event-card:hover h5::before {
+      transform: scale(1.2) rotate(10deg);
+    }
+
+    .event-card p {
+      color: var(--color-text-secondary);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .event-card ul {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+
+    .event-card li {
+      color: var(--color-text-secondary);
+      margin-bottom: 8px;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .event-card li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--color-accent-cyan);
+    }
+
+    .event-card strong {
+      color: var(--color-accent-purple-light);
+    }
+
+    .btn-register {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--color-accent-purple), var(--color-accent-purple-light));
+      color: var(--color-text-primary);
+      padding: 12px 30px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s var(--transition-smooth);
+      box-shadow: 0 4px 15px rgba(123, 47, 255, 0.4);
+    }
+
+    .btn-register:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(123, 47, 255, 0.6);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--color-bg-primary);
+      border-top: 1px solid var(--color-glass-border);
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    footer p {
+      color: var(--color-text-secondary);
+      margin-bottom: 10px;
+    }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s var(--transition-smooth);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .page-header {
+        min-height: 40vh;
+        padding: 120px 20px 60px;
+      }
+
+      .container {
+        padding: 60px 20px;
+      }
+
+      .events-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .back-btn {
+        top: 20px;
+        left: 20px;
+        width: 45px;
+        height: 45px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <!-- Back Button -->
+  <a href="index.html" class="back-btn">
+    <i class="bi bi-arrow-left"></i>
+  </a>
+
+  <!-- Header -->
+  <section class="page-header">
+    <div>
+      <h1>Cyber Summit 2026 - Event Details</h1>
+      <p>CTF • Hackathon • Gaming • Web Development • Chess</p>
+    </div>
+  </section>
+
+  <!-- Events -->
+  <section>
+    <div class="container">
+      <div class="events-grid">
+
+        <!-- CTF -->
+        <div class="event-card reveal">
+          <h5 data-emoji="🏴‍☠️">Capture The Flag (CTF)</h5>
+          <p>Test your hacking and cybersecurity skills through real-world challenges.</p>
+          <ul>
+            <li><strong>Day:</strong> Day 1</li>
+            <li><strong>Time:</strong> 10:00 AM – 1:00 PM</li>
+            <li><strong>Venue:</strong> Cyber Lab - Block A</li>
+          </ul>
+          <a href="#" class="btn-register">Register</a>
+        </div>
+
+        <!-- Hackathon -->
+        <div class="event-card reveal">
+          <h5 data-emoji="💻">Hackathon</h5>
+          <p>24-hour coding & innovation challenge to solve real-world cybersecurity problems.</p>
+          <ul>
+            <li><strong>Day:</strong> Day 1 – Day 2</li>
+            <li><strong>Time:</strong> 11:00 AM – 11:00 AM (24 Hours)</li>
+            <li><strong>Venue:</strong> Innovation Hall</li>
+          </ul>
+          <a href="#" class="btn-register">Register</a>
+        </div>
+
+        <!-- Build The Web -->
+        <div class="event-card reveal">
+          <h5 data-emoji="🌐">Build The Web</h5>
+          <p>Design & develop creative responsive websites within limited time.</p>
+          <ul>
+            <li><strong>Day:</strong> Day 2</li>
+            <li><strong>Time:</strong> 10:00 AM – 1:00 PM</li>
+            <li><strong>Venue:</strong> Web Lab - Block C</li>
+          </ul>
+          <a href="#" class="btn-register">Register</a>
+        </div>
+
+        <!-- Chess -->
+        <div class="event-card reveal">
+          <h5 data-emoji="♟️">Chess Tournament</h5>
+          <p>Battle of minds – knockout & league format chess competition.</p>
+          <ul>
+            <li><strong>Day:</strong> Day 1</li>
+            <li><strong>Time:</strong> 2:00 PM – 5:00 PM</li>
+            <li><strong>Venue:</strong> Seminar Hall 2</li>
+          </ul>
+          <a href="#" class="btn-register">Register</a>
+        </div>
+
+        <!-- Clash Royale -->
+        <div class="event-card reveal">
+          <h5 data-emoji="🎮">Clash Royale</h5>
+          <p>1v1 knockout mobile gaming tournament.</p>
+          <ul>
+            <li><strong>Day:</strong> Day 2</li>
+            <li><strong>Time:</strong> 2:00 PM – 4:30 PM</li>
+            <li><strong>Venue:</strong> Gaming Arena</li>
+          </ul>
+          <a href="#" class="btn-register">Register</a>
+        </div>
+
+        <!-- Free Fire -->
+        <div class="event-card reveal">
+          <h5 data-emoji="🔥">Free Fire</h5>
+          <p>Squad-based multiplayer battle royale tournament.</p>
+          <ul>
+            <li><strong>Day:</strong> Day 3</li>
+            <li><strong>Time:</strong> 10:00 AM – 1:00 PM</li>
+            <li><strong>Venue:</strong> Gaming Arena</li>
+          </ul>
+          <a href="#" class="btn-register">Register</a>
+        </div>
+
+        <!-- PUBG -->
+        <div class="event-card reveal">
+          <h5 data-emoji="🔫">PUBG / BGMI</h5>
+          <p>Battle royale e-sports championship with squad matches.</p>
+          <ul>
+            <li><strong>Day:</strong> Day 3</li>
+            <li><strong>Time:</strong> 2:00 PM – 5:30 PM</li>
+            <li><strong>Venue:</strong> Gaming Arena</li>
+          </ul>
+          <a href="#" class="btn-register">Register</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2026 Cyber Summit | All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <script>
+
+
+    // ===== SCROLL REVEAL ANIMATIONS =====
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('active');
+          }, index * 100);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+
+</html>
